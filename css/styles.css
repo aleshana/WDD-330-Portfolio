@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Sail&display=swap');
+
+/* Design Notes:
+  Color Scheme Link: https://coolors.co/9aaca7-020202-9e85c1-ffd447-503b31
+  Morning Blue: #9aaca7
+  Rich Black: #020202
+  Purple Mountain: #9e85c1
+  Mustard: #FFD447
+  Orange Yellow: #f5bc00
+  Lemon Meringue: #FFF1C2 
+  Dark Liver Horses: #503b31
+  2nd Font Ideas: Boogaloo, Patrick Hand, Lobster Two
+  General font-family: 'Lato', sans-serif;
+  Header font-family: 'Sail', cursive;
+*/
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    background-color:#9aaca7;
+  
+  }
+  
+  .content {
+    padding: 1em;
+    margin: 0 auto;
+    line-height: 1.6em;
+    background-color: white;
+    max-width: 960px;
+    color: #020202;
+  
+  }
+  
+  h1 {
+    font-family: 'Sail', cursive;
+    font-size: 2em;
+    color: #503b31;
+    
+  }
+  
+  h2 {
+    color:#020202;
+    background-color: #9e85c1;
+    font-size: 1.5em;
+    padding: .5em;
+    
+  }
+  h3 {
+    color: #9e85c1;
+  }
+
+  h4{
+    color:#503b31;
+    font-size: 1.25em;
+    padding:0;
+    margin: 0;
+    
+  }
+
+
+  .logoImg{
+      display:block;
+      max-width: 100%;
+      margin: auto;
+  }
+
+  .titleBar{
+      background-color: #FFF1C2;
+      position: relative;
+      padding: .25em;
+  }
+
+  .headerTitle{
+      font-size: 3em;
+      text-align: center;
+  }
+  .tagline {
+      font-size:2em;
+      text-align: center;
+  }
+
+  ol a:link{
+    color:#503b31;
+      
+  }
+
+  ol a:hover{
+    text-decoration: underline;
+    color:#9e85c1;
+}
+
+ol a:visited{
+    text-decoration: none;
+    color:#F5bc00;
+}
+
+  ol {
+    list-style-type: none;
+    
+}
+
+  li {
+      padding: .5em 0;
+      font-size: 1.25em;
+  }
+
+  hr {
+      margin: 1em 0;
+      height: .05em;
+  }
+
+
+section{
+    padding: 1em;
+}
+
+h4 a:link{
+    color:#503b31;
+      
+  }
+
+h4 a:hover{
+    text-decoration: underline;
+    color:#9e85c1;
+}
+h4 a:visited{
+        text-decoration: none;
+        color:#F5bc00;
+}
+
+
+
+  
+  
+    
+  

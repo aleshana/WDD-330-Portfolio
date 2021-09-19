@@ -1,0 +1,63 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Story Editor Exercise">
+    <meta name="author" content="Alesha Anderson McCown">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Editor Exercise</title>
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    
+    <style>
+        textarea {
+            width: 800px;
+            height: 250px;
+            background-color:lightblue;
+        }
+    </style>
+
+    <script>
+        function loadStory(){
+            var storyName=document.getElementByID("name_input").value
+            var storyHTML=localStorage.getItem(storyName)
+            document.getElementByID("story_editor").value=storyHTML
+        }
+        function saveStory(){
+            var storyName=document.getElementByID("name_input").value
+            var storyHTML=document.getElementBYID("story_editor").value
+            localStorage.setItem(storyName, storyHTML)
+        }
+        function displayStory(){
+            var storyHTML=document.getElementByID("story_editor").value
+            document.getElementById("story_display").innerHTML=storyHTML
+        }
+
+    </script>
+
+</head>
+<body>
+    <div class ="content">
+   
+
+    <div class = "titleBar">
+        <h1 class = "headerTitle">Story Writer Exersice</h1> 
+    </div>
+
+    Story Name:<input id="name_input"></input>
+
+    <section>
+        <button onclick="loadStory()">Find and Edit Story</button>
+        <button onclick="saveStory()">Save Story</button>
+        <button onclick="displayStory()">Display Story</button>
+    </section>
+    
+    <textarea id="story_editor" placeholder="Write your story here."></textarea>
+    
+    <section id="display_story"></section>
+
+</div>
+
+</body>
+
+</html>
+
