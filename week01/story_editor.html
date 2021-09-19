@@ -6,8 +6,7 @@
     <meta name="author" content="Alesha Anderson McCown">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story Editor Exercise</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
     <style>
         textarea {
             width: 800px;
@@ -18,18 +17,18 @@
 
     <script>
         function loadStory(){
-            var storyName=document.getElementByID("name_input").value
+            var storyName=document.getElementById("name_input").value
             var storyHTML=localStorage.getItem(storyName)
-            document.getElementByID("story_editor").value=storyHTML
+            document.getElementById("story_editor").value=storyHTML
         }
         function saveStory(){
-            var storyName=document.getElementByID("name_input").value
-            var storyHTML=document.getElementBYID("story_editor").value
+            var storyName=document.getElementById("name_input").value
+            var storyHTML=document.getElementById("story_editor").value
             localStorage.setItem(storyName, storyHTML)
         }
         function displayStory(){
-            var storyHTML=document.getElementByID("story_editor").value
-            document.getElementById("story_display").innerHTML=storyHTML
+            var storyHTML=document.getElementById("story_editor").value
+            document.getElementById("display_story").innerHTML=storyHTML
         }
 
     </script>

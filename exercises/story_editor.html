@@ -18,17 +18,17 @@
 
     <script>
         function loadStory(){
-            var storyName=document.getElementByID("name_input").value
+            var storyName=document.getElementById("name_input").value
             var storyHTML=localStorage.getItem(storyName)
-            document.getElementByID("story_editor").value=storyHTML
+            document.getElementById("story_editor").value=storyHTML
         }
         function saveStory(){
-            var storyName=document.getElementByID("name_input").value
-            var storyHTML=document.getElementBYID("story_editor").value
+            var storyName=document.getElementById("name_input").value
+            var storyHTML=document.getElementById("story_editor").value
             localStorage.setItem(storyName, storyHTML)
         }
         function displayStory(){
-            var storyHTML=document.getElementByID("story_editor").value
+            var storyHTML=document.getElementById("story_editor").value
             document.getElementById("story_display").innerHTML=storyHTML
         }
 
