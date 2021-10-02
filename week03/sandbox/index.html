@@ -1,0 +1,60 @@
+<!doctype html>
+<title>Sandbox Exercise Build Table</title>
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  // Your code here
+
+function createTable(arrayData){
+    //create table element
+    let table = document.createElement("table");
+    let headerRow = document.createElement("tr");
+   
+    //get keys from MOUNTAINS and put in object
+    columnTitles = Object.keys(arrayData[0]);
+    // console.log(columnTitles);
+    columnTitles.forEach((columnHeader) => {
+        let headerCell = document.createElement("th");
+        headerCell.appendChild(document.createTextNode(columnHeader));
+        headerRow.appendChild(headerCell);
+        console.log(columnHeader);
+    });
+    table.appendChild(headerRow);
+
+    arrayData.forEach((row) => {
+        let rowData = Object.values(row);
+        console.log(rowData);
+        let dataRow = document.createElement("tr");
+        rowData.forEach((dataElement) =>{
+            let cell = document.createElement("td");
+            cell.appendChild(document.createTextNode(dataElement));
+            // console.log(dataElement);
+            if (typeof dataElement === "number"){
+            cell.style.textAlign = "right";}
+            cell.style.padding = "5px";
+            dataRow.appendChild(cell);
+            
+        });
+        table.appendChild(dataRow);
+    });
+
+
+    return table; 
+    
+}
+
+document.getElementById("mountains").appendChild(createTable(MOUNTAINS));
+
+</script>
