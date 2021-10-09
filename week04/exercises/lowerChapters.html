@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+    <!-- <script src = "js/main.js"></script> -->
+    <script>
+        //Chapter 3--Minimum
+
+let x = 0;
+let y;
+let result = "";
+
+function minimum (x, y) {
+    
+    if (x < y) {
+        result = x + " is smaller than " + y;
+    }
+    else if (y < x) {
+        result = y + " is smaller than " + x;
+    } 
+    else {
+        result = "The numbers are equal."
+    }
+    return result;
+}
+
+// minimum (5, 8);
+console.log(minimum(5, 8));  
+console.log(minimum(0, 10));
+console.log(minimum(50, 40));
+console.log(minimum(5,5))
+
+
+//Bean Counting
+
+function countB(wordString) {
+    let bCount = 0;
+    for (let i = 0; i<wordString.length; i++){    
+        if (wordString[i]=="B"){
+            bCount++;
+        }
+    }
+    return bCount;
+}
+console.log(countB("BlueBaby"));
+
+function countChar(anotherWord){
+    let bIndex = "";
+    for (let i = 0; i<anotherWord.length; i++){
+        if (anotherWord[i]=="B"){
+            bIndex = bIndex + i + ",";
+        }
+    }
+    return bIndex;
+}
+console.log(countChar("BlueBabyBalloon"));
+
+    </script>
+</head>
+<body>
+ <h1> See developer tools for js code</h1> 
+
+</body>
+
+</html>
