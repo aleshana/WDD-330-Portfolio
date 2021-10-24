@@ -1,0 +1,98 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My ToDo App, Enter New Task">
+    <meta name="author" content="Alesha Anderson McCown">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter New Task--My ToDo App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    
+
+</head>
+<body>
+    <div class ="content">
+   
+<header>
+
+    <div class = "titleBar">
+        <img class= "logoImg" src = "images/logo.png" alt = "Checkmark Logo">
+        <h1 class = "headerTitle">My ToDo App</h1> 
+    </div>
+   
+</header>
+   
+<nav>
+    <ul class = "navigation">
+        <li ><a href = "index2.html"><div class = "menuSymbol">&#8962;</div>Home<br>&nbsp;</a></li>
+        <li ><a href = "taskDetails.html"><div class = "menuSymbol">&#x271A;</div>New <br>Task</a></li>
+        <li ><a href = "lists.html"><div class = "menuSymbol">&#9777;</div>Task<br> Lists</a></li>
+        <li class= "active"><a href = "manageTasks.html"><div class = "menuSymbol">&#x270E;</div>Manage<br> Tasks</a></li>
+
+    </ul>
+</nav>
+
+<main>
+    <h2>Manage Tasks</h2>
+    <form>
+        <fieldset>
+            <div id = "taskTitle" class = "requiredInput">
+                <input id = "enterTaskTitle" type = "text" name ="enterTaskDetails" placeholder = "Task Title" required>
+            </div>
+            
+            <div id = "taskDescription" class = "standardInput">
+                <input id = "enterTaskDescription" type = "text" name ="enterTaskDescription" placeholder = "Description">
+            </div>
+        
+            <div id = "taskDueDate" class = "standardInput">
+                <input id = "enterTaskDueDate" type = "date" name ="enterTaskDueDate" placeholder = "Due Date">
+            </div>
+        
+            <div class = "priorityDiv">
+                Task Priority:&nbsp; &nbsp;
+                
+                <label for="high" class = "radioLabel">High
+                    <input type="radio" id="radioOption" name="priority" value="high">
+                    <span class = "radioRed"></span>
+                </label>
+                  
+                <label for="normal" class = "radioLabel">Normal
+                    <input type="radio" id="radioOption" name="priority" value="normal" checked = "checked" >
+                    <span class = "radioYellow"></span>
+                </label>
+                  
+                <label for="low" class = "radioLabel">Low
+                    <input type="radio" id="radioOption" name="priority" value="low">
+                    <span class = "radioBlue"></span>
+                </label>
+                 
+            </div>
+              
+        </fieldset>  
+        
+        <div class="buttonDiv">
+            <input type="button" class="button2" value="Save Changes" id = "editTaskBtn">
+            <input type="button" class="button2" value="Delete Task" id= "deleteTaskBtn">
+        </div>
+    
+    </form>
+
+    
+    
+</main>
+
+<footer>
+    <hr>
+    <div class = "footerBar">
+        &copy;<span id= "currentYear">2021 </span>| My ToDo App | Alesha Anderson McCown | Utah |
+        <span class= "currentDate" id = "currentDate">Current Date</span>
+    </div>
+    <hr>
+</footer>
+</div>
+<script src = "js/ToDos.js" type= "module"></script>
+
+</body>
+
+</html>

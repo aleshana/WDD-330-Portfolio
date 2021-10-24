@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&display=swap');
+
+/*
+font-family: 'Lato', sans-serif;
+font-family: 'Patrick Hand', cursive;
+#0814A2---dark blue—Header 1
+black—Body Text
+3D1A5A--dark purple--text and border accents
+E0E2F9—super light blue-purple--accent backgrounds
+FEFDDC-super light yellow
+FAF9B6—light yellow--background
+medium gray #ababab (171, 171, 171)---colored background
+light gray #D5D5D5---colored background and heading
+*/
+
+
+/************GENERAL WEBSITE FORMATS***********/
+
+body {
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+}
+
+h1 {
+    font-family: 'Patrick Hand', cursive;
+    color: #0814A2;  
+    font-weight: 800; 
+    font-size: 2rem; 
+    line-height: 1em;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    color:#FEFDDC;
+    background-color: #3D1A5A;  
+    /* font-weight: 800;  */
+    font-size: 1.75rem;
+    padding: .5em;
+    margin: 0;
+    /* line-height: 1em; */
+    text-align: center;
+    
+    
+}
+
+h3 {
+    font-family: 'Patrick Hand', cursive;
+    color: #0814A2;  
+    font-weight: bold; 
+    font-size: 1.5rem; 
+    background-color: #d5d5d5; 
+    padding: .5em; 
+    margin:0;
+    line-height: 1em;
+}
+
+/* h4 {
+    font-family: 'Lato', sans-serif;
+    color: #0814A2;  
+    font-weight: bold; 
+    font-size: 1.25rem; 
+    background-color: #94b1c5;
+}  */
+
+
+
+p {
+    font-family: 'Lato', sans-serif;
+    color: black;  
+    font-size: 1rem; 
+} 
+
+hr {
+    border: 3px solid #3D1A5A;
+    padding:0;
+    margin:0;
+  }
+
+.content {
+    max-width: 600px;
+    background-color: #FEFDDC;
+    margin: auto;
+
+
+  }
+/**************HEADER/NAVIGATION**************/
+
+header {
+    background-color: #d5d5d5;
+    text-align: center;
+    border-top: 10px solid #0814A2;
+    border-bottom: 5px solid #0814A2;
+    margin: center;
+}
+
+.titleBar {
+    margin:auto;
+    display: inline-block;
+    padding: 15px;
+}
+.headerTitle {
+    
+    font-size: 2.5em;
+    margin:0;
+}
+
+.logoImg {
+    padding: 5px;
+    width: 75px;
+}
+
+.menuSymbol {
+    font-size: 3em;
+    padding: 0 0 .5em 0;
+}
+
+nav ul{
+    padding:0;
+    margin: 0;
+    display: grid;
+   grid-template-rows: 1fr;
+   grid-template-columns: repeat(4, 25%);
+   border-bottom: 5px solid #0814A2;
+   border-right: 5px solid #0814A2;
+   border-left: 5px solid #0814A2;
+}
+
+nav li {
+    border: 5px solid #0814A2;
+}
+
+.navigation{
+    text-align: center;
+    padding: 0;
+ }
+ 
+
+.navigation ul{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+  
+ }
+
+.navigation li {
+    display:inline-block;
+    color: #d5d5d5;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+   line-height: 1em;
+}
+
+.responsive li {
+    display: block;
+    text-align: center;
+}
+
+.navigation a {
+   display:block;
+   color: #0814A2;
+   text-decoration: none;
+   padding: .75em;
+ }
+ 
+nav a:hover { 
+    background-color: #3D1A5A;
+    color: #d5d5d5;
+  }
+
+nav .active a{
+    background-color: #d5d5d5;
+    color: #0814A2;
+}
+
+nav .active a:visited{
+    color: #0814A2;
+}
+
+
+/**************FOOTER**************/
+
+.footerBar {
+    padding: .75em;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    background:#0814A2;
+    color: #FEFDDC;
+    line-height: 1.25em;
+    
+  }
+   .currentDate {
+     color: #FEFDDC;
+     font-size: .9em;
+     
+   } 
+
+   
+   .button {
+    background-color: #3D1A5A;
+    color: #FEFDDC;
+    height: 2.5em;
+    width: 80%;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: .5em auto;
+    /* cursor: pointer; */
+  }
+
+  .button2 {
+    background-color: #3D1A5A;
+    color: #FEFDDC;
+    height: 2.5em;
+    width: 25%;
+    font-size: 1em;
+    font-weight: bold;
+    margin: .5em auto;
+    /* cursor: pointer; */
+  }
+
+  
+
+/**************HOMEPAGE**************/
+.requiredInputHome{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#enterNewTask{
+    width: 95%;
+    font-size: 1.75em;
+    margin: .25em auto;
+}
+    
+/**************NEW TASK PAGE**************/
+#enterTaskTitle{
+    width: 98%;
+    font-size: 1.5em;
+    margin: .25em 0;
+}
+
+#enterTaskDescription{
+    width: 98%;
+    height: 4em;
+    text-justify: top;
+    font-size: 1.5em;
+    margin: .25em 0;
+}
+.dueDateLabel {
+    font-size: 1.5em;
+    margin: .5em 0;
+}
+
+#enterTaskDueDate{
+    font-size: 1.5em;
+    margin: .25em 0;
+}
+
+.priorityDiv{
+    font-size: 1.5em;
+    margin: .5em 2em .5em 0;
+}
+
+.radioLabel {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    font-size: 22px;
+    user-select: none;
+  }
+  
+  .radioLabel input {
+    visibility: hidden;
+    position: absolute;
+  }
+  
+  .radioRed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color:red;
+    border: 2px solid darkred;
+    border-radius: 50%;
+  }
+  
+  .radioYellow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: yellow;
+    border: 2px solid darkgoldenrod;
+    border-radius: 50%;
+  }
+
+  .radioBlue {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: blue;
+    border: 2px solid darkblue;
+    border-radius: 50%;
+  }
+
+  .buttonDiv {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+  /* #enterTaskBtn {
+      height: 30px;
+  } */
+
+  
+
+/**************TASK LIST PAGE**************/
+
+/**************MANAGE TASKS**************/
+
+/**************RESPONSIVE ADJUSTMENTS**************/
+
