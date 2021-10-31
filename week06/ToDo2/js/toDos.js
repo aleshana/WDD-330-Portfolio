@@ -63,8 +63,7 @@ export default class Tasks {
     this.footerElement = document.getElementById(footerID);
   }
 
-  // why is this function necessary?  taskList is not exported, and so it cannot be seen outside of this module. I added this in case I ever need the list of tasks outside of the module. This also sets me up nicely if my data were to move. I can just change this method to the new source and everything will still work if I only access the data through this getter.
-  getAllTasks() {
+   getAllTasks() {
     return toDoList;
   }
 
@@ -90,59 +89,51 @@ export default class Tasks {
     return rArray;
   }
 
-  // For the first stretch we will need to get just one task.
-  getTaskByName(taskName) {
+    getTaskByName(taskName) {
     return this.getAllTasks().find(task => task.name === taskName);
   }
 
-  //show a list of tasks in the parentElement
   showAllTasksList() {
     console.log("showAllTasksList-test");
     this.parentElement.innerHTML = '';
     renderTaskList(this.parentElement, this.getAllTasks(), this);
     this.addTaskListener();
     this.renderListFooter(this.footerElement);
-    // this.allButton.classList.add('hidden');
+    
   }
 
-  //show a list of todo tasks in the parentElement
-  showTodoList() {
+    showTodoList() {
     console.log("showTodoTasksList-test");
     this.parentElement.innerHTML = '';
     renderTaskList(this.parentElement, this.getTodoTasks(), this);
     this.addTaskListener();
     this.renderListFooter(this.footerElement);
-    // this.allButton.classList.add('hidden');
+    
   }
 
-  //show a list of completed tasks in the parentElement
-  showCompletedList() {
+   showCompletedList() {
     console.log("showCompletedTasksList-test");
     this.parentElement.innerHTML = '';
     renderTaskList(this.parentElement, this.getCompletedTasks(), this);
     this.addTaskListener();
     this.renderListFooter(this.footerElement);
-    // this.allButton.classList.add('hidden');
-  }
+ }
 
-  // show one task with full details in the parentElement
-  showOneTask(taskName) {
+   showOneTask(taskName) {
     const task1 = this.getTaskByName(taskName);
     this.parentElement.innerHTML = "";
     this.parentElement.appendChild(renderOneTaskFull(task1));
     this.backButton.classList.remove('hidden');
   }
 
-  // in order to show the details of a task ontouchend we will need to attach a listener AFTER the list of tasks has been built. The function below does that.
-  addTaskListener() {
+addTaskListener() {
     const childrenArray = Array.from(this.parentElement.children);
       childrenArray.forEach(child => {
         child.addEventListener('touchend', e => {
             this.showOneHike(e.currentTarget.dataset.name);  //change to Edit, Delete or Add
         });
       });
-    // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
-  }
+     }
 
   addNewTask(){
     let newTaskField = document.getElementById("enterNewTask");
