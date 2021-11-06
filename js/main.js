@@ -9,11 +9,11 @@ const weeksArray = [
     {label: "Week 5 Work", url: "week05/index.html"},
     {label: "Week 6 Work", url: "week06/index.html"},
     {label: "Week 7 Work", url: "week07/index.html"},
-    {label: "Week 8 Work", url: "week07/index.html"},
-    {label: "Week 9 Work", url: "week07/index.html"},
-    {label: "Week 10 Work", url: "week07/index.html"},
-    {label: "Week 11 Work", url: "week07/index.html"},
-    {label: "Week 12 Work", url: "week07/index.html"}
+    {label: "Week 8 Work", url: "week08/index.html"},
+    {label: "Week 9 Work", url: "week09/index.html"},
+    {label: "Week 10 Work", url: "week10/index.html"},
+    {label: "Week 11 Work", url: "week11/index.html"},
+    {label: "Week 12 Work", url: "week12/index.html"}
 ]
 
 const weeks = document.querySelector('ol.homepageWeeks');
