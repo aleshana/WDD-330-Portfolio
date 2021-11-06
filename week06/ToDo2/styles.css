@@ -144,6 +144,30 @@ header {
     font-size: 1.75em;
     margin: .25em auto;
 }
+
+th {
+  font-size: 1.25em;
+  padding: .5em 0;
+}
+
+td {
+  font-size: 1em;
+}
+
+.taskCompletedRow {
+  color: gray;
+  text-decoration: line-through;
+ /* background-color:whitesmoke; */
+}
+
+.deleteButton {
+  font-size: 1.1em;
+  text-align: center;
+  font-weight: bold;
+  color:red;
+  background-color: white;
+}
+
     
 /**************NEW TASK PAGE**************/
 #enterTaskTitle{
@@ -216,12 +240,16 @@ header {
     display:flex;
     justify-content: center;
     align-content: center;
+    padding-bottom: 1.5em;
 }
 
-.checkboxComplete {
-    height: 2em;
-    width: 2em;
+.buttonDiv2 {
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 1.5em;
 }
+
 .tableStyles{
     margin-left: auto;
     margin-right:auto;
@@ -231,3 +259,5 @@ header {
 td {
     padding: .25em 1em;
 }
+
+

@@ -1,61 +1,4 @@
-const toDoList = [
-{
-  id: Date.now(),  
-  title: "Clean My Bedroom",
-  description: "Make my bed, pick-up laundry, and vaccuum the floor.", 
-  completed: false,
-  priority: "normal",
-}, 
-{
-  id: Date.now(),  
-  title: "Wash Laundry",
-  description: "Gather laundry from all the rooms, sort it by colors, load in the washer.", 
-  completed: false,
-  priority: "normal",
-}, 
-{
-  id: Date.now(),  
-  title: "Wash Dishes",
-  description: "Clear dishes from table, clear and rinse them, load in dishwasher.", 
-  completed: false,
-  priority: "normal",
-}, 
-{
-  id: Date.now(),  
-  title: "Finish Homework",
-  description: "Review and edit GE report, build app, study for test.", 
-  completed: false,
-  priority: "normal",
-},
-{
-  id: Date.now(),  
-  title: "2 Clean My Bedroom",
-  description: "Make my bed, pick-up laundry, and vaccuum the floor.", 
-  completed: true,
-  priority: "normal",
-}, 
-{
-  id: Date.now(),  
-  title: "2 Wash Laundry",
-  description: "Gather laundry from all the rooms, sort it by colors, load in the washer.", 
-  completed: true,
-  priority: "normal",
-}, 
-{
-  id: Date.now(),  
-  title: "2 Wash Dishes",
-  description: "Clear dishes from table, clear and rinse them, load in dishwasher.", 
-  completed: true,
-  priority: "normal",
-}, 
-{
-  id: Date.now(),  
-  title: "2 Finish Homework",
-  description: "Review and edit GE report, build app, study for test.", 
-  completed: true,
-  priority: "normal",
-}
-  ];
+import * as lsH from './ls.js';
 
 export default class Tasks {
   constructor(elementId, footerID) {
@@ -89,8 +32,14 @@ export default class Tasks {
     return rArray;
   }
 
-    getTaskByName(taskName) {
-    return this.getAllTasks().find(task => task.name === taskName);
+    getTaskByTitle(taskTitle) {
+    return this.getAllTasks().find(task => task.title === taskTitle);
+  }
+
+  getTaskById(taskId) {
+    console.log(taskId);
+    console.log(toDoList[0].id);
+    return this.getAllTasks().find(task => task.id === taskId);
   }
 
   showAllTasksList() {
@@ -119,8 +68,8 @@ export default class Tasks {
     this.renderListFooter(this.footerElement);
  }
 
-   showOneTask(taskName) {
-    const task1 = this.getTaskByName(taskName);
+   showOneTask(taskTitle) {
+    const task1 = this.getTaskByTitle(taskTitle);
     this.parentElement.innerHTML = "";
     this.parentElement.appendChild(renderOneTaskFull(task1));
     this.backButton.classList.remove('hidden');
@@ -130,7 +79,7 @@ addTaskListener() {
     const childrenArray = Array.from(this.parentElement.children);
       childrenArray.forEach(child => {
         child.addEventListener('touchend', e => {
-            this.showOneHike(e.currentTarget.dataset.name);  //change to Edit, Delete or Add
+        this.showOneTask(e.currentTarget.dataset.title);  //change to Edit, Delete or Add
         });
       });
      }
@@ -138,9 +87,11 @@ addTaskListener() {
   addNewTask(){
     let newTaskField = document.getElementById("enterNewTask");
     console.log(newTaskField.value);
+    let idDate= Date.now()
+    let stringDate = idDate.toString();    
 
     let newTask = {
-      id: Date.now(),  
+      id: stringDate,  
       title: newTaskField.value,
       description: "Make my bed, pick-up laundry, and vaccuum the floor.", 
       completed: false,
@@ -148,17 +99,43 @@ addTaskListener() {
     };
 
     toDoList.push(newTask); ///create new Task
+    localStorage.setItem(newTask);
   }
 
-  completedToggle(taskIdString) {
+  removeTask(taskId){
+    let task = this.getTaskById(taskId);
+     storage.removeItem(task);
+    };
 
-    let taskId = parseInt(taskIdString, 10);
+    removeItem(taskId) {
+      let task = toDoList.findIndex(task => task.id == taskId);     //  find the matching id
+      toDoList.splice(task, 1);                        //  remove from the big list of todos
+      lsH.writeToLS(this.key, toDoList);                          //  save main list of todos to LS
+      this.showToDoList();                                        //  show updated list on the page
+  }
+  
+
+  completedToggle(taskId) {
+   
+    // let taskId = parseInt(taskIdString, 10);
+    let task = this.getTaskById(taskId);
+    console.log(task);
     toDoList.forEach(function(part, index) {
       if (toDoList[index].id === taskId) {
+        console.log(index);
         toDoList[index].completed = !toDoList[index].completed;
+        console.log(toDoList[index]);
+        console.log(taskId);
+        let elementId = document.getElementById(taskId);
+        let elementId2 = document.getElementById("completedItem")
+        elementId.classList.toggle("taskCompletedRow");
+        elementId.setAttribute("checked", "");
+        elementId2.classList.toggle("taskCompletedRow");
+        console.log(elementId);
       }
     });
   }
+  
 
 /*
   removeTask(tasks){
@@ -170,14 +147,6 @@ addTaskListener() {
     }
   }
 
-  //Edit the Array
-
-  editTask(tasks){
-    let i = tasks.indexOf(editTask);
-    if (i !== -1) {
-      task[i] = newEditTask;
-    }
-  }
 */
 
   renderListFooter(parent) {
@@ -226,11 +195,30 @@ addTaskListener() {
 
 }
 
+function convertTimestampToDate(taskId) {
+  let dateNum = parseInt(taskId, 10)
+  let date = new Date(dateNum);
+  // let convertDate = new Date(task.id);
+  console.log(date);
+  const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", 
+  "September", "October", "November", "December"];
+  const month = monthsArray[date.getMonth()];
+  console.log(month);
+  const day =  date.getDate();
+  console.log(day);
+  const year =  date.getFullYear();
+  console.log(year);
+  // const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
+  const readableDate = month + ", " + day + ", " + year;
+  console.log(readableDate);
+  return readableDate;
+}
+
   // methods responsible for building HTML.  Why aren't these in the class?  They don't really need to be, and by moving them outside of the exported class, they cannot be called outside the module...they become private.
   function renderTaskListHeader() {
     const heading = document.createElement("tr");
     heading.classList.add('taskRowHeading');
-    heading.innerHTML = `<th>Completed</th><th>Task</th><th>Created</th>`
+    heading.innerHTML = `<th>Completed</th><th>Task</th><th>Created</th><th>Delete</th>`
     console.log('test header function');
     return heading
   }
@@ -240,23 +228,57 @@ addTaskListener() {
         parent.appendChild(renderTaskListHeader());
         tasks.forEach(task => {
           let newTask = renderOneTask(task);
+          console.log(task.id);
           parent.appendChild(newTask);
-          let checkbox = document.getElementById(task.id);
-          checkbox.addEventListener('click', e => {
+          let checkboxElement = document.getElementById(task.id);
+          console.log(checkboxElement);
+          checkboxElement.addEventListener('click', e => {
             myThis.completedToggle(e.target.id);
+          });
+          let deleteButtonElement = document.getElementById(task.id+"Delete");///Id for each Button
+          console.log(deleteButtonElement);
+          deleteButtonElement.addEventListener('click', e => {
+          myThis.removeTask(e.target.id);
           });
         });      
   }
 
   function renderOneTask(task) {
+    const dateId = convertTimestampToDate(task.id);
     const item = document.createElement("tr");
-    item.classList.add('taskTableRow');
-    item.innerHTML = `
-    <td> <input type="checkbox" id=${task.id} name="completedCheckBox" class= "checkboxComplete"></td> 
-    <td>${task.title}</td><td>${Date(task.id).toString()}</td>`;
-    console.log("test renderOne Tasks");
+    console.log(task.id);
+    const inputTd = document.createElement("td");
+    const inputField = document.createElement("input")    
+    inputField.setAttribute("type", "checkbox");
+    inputField.setAttribute("id", task.id);
+    inputField.setAttribute("name", "completedCheckBox");
+    if (task.completed === true) {
+      item.setAttribute("id", "completedItem")
+      item.setAttribute("class", "taskCompletedRow");
+      inputField.setAttribute("class", 'taskCompletedBox');
+      inputField.setAttribute("checked", "");
+    }
+    inputTd.appendChild(inputField);
+    const td2 = document.createElement("td");
+    td2.innerHTML = task.title;
+    const td3 = document.createElement("td");
+    td3.innerHTML = dateId;
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "X"
+    deleteButton.setAttribute ("id", task.id+"Delete");
+    deleteButton.setAttribute("class", "deleteButton");
+    console.log(deleteButton);  
+    console.log(inputField);
+    item.appendChild(inputTd);
+    console.log(inputTd);
+    // item.appendChild(inputField);
+    item.appendChild(td2);
+    item.appendChild(td3);
+    item.appendChild(deleteButton);
+    console.log(item);
     return item;
   }
+
 
 
   // function renderOneTaskFull(task) {
