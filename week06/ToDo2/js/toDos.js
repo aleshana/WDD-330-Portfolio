@@ -1,88 +1,101 @@
 import * as lsH from './ls.js';
 
+let toDoList = [];
+
 export default class Tasks {
   constructor(elementId, footerID) {
     this.parentElement = document.getElementById(elementId);
     this.footerElement = document.getElementById(footerID);
+    this.key = elementId;
+    this.toDoList = lsH.readFromLS(this.key);
   }
-
-   getAllTasks() {
+  
+  getAllTasks(key) {
+    let ls = lsH.readFromLS(key);
+    toDoList = ls === null ? [] : ls;    
     return toDoList;
   }
 
   getTodoTasks() {
     let rArray = [];
-    toDoList.forEach(task => {
+    this.toDoList.forEach(task => {
       if (task.completed === false) {
-        console.log(task.id);
         rArray.push(task);
       }
     });
+    console.log(rArray);
     return rArray;
   }
 
   getCompletedTasks() {
     let rArray = [];
-    toDoList.forEach(task => {
+    this.toDoList.forEach(task => {
       if (task.completed === true) {
-        console.log(task.id);
         rArray.push(task);
       }
     });
     return rArray;
   }
 
-    getTaskByTitle(taskTitle) {
-    return this.getAllTasks().find(task => task.title === taskTitle);
-  }
+  // getTaskByToDo(taskToDo1) {
+  //   return this.getAllTasks(this.key).find(task => task.taskToDo === taskToDo1);
+  // }
 
   getTaskById(taskId) {
-    console.log(taskId);
-    console.log(toDoList[0].id);
-    return this.getAllTasks().find(task => task.id === taskId);
+    // let task = todoList.findIndex(task => task.id == itId);
+    console.log(taskId);  
+    console.log(toDoList);
+    let taskI = toDoList.findIndex(task => task.id === taskId);
+    console.log(toDoList[taskI]);
+    return toDoList[taskI];
+
+    // return toDoList.find(({id}) => id === taskId);
   }
+  
 
   showAllTasksList() {
-    console.log("showAllTasksList-test");
     this.parentElement.innerHTML = '';
-    renderTaskList(this.parentElement, this.getAllTasks(), this);
+    renderTaskList(this.parentElement, this.getAllTasks(this.key), this);
     this.addTaskListener();
     this.renderListFooter(this.footerElement);
-    
   }
 
-    showTodoList() {
-    console.log("showTodoTasksList-test");
+  showTodoList() {
     this.parentElement.innerHTML = '';
     renderTaskList(this.parentElement, this.getTodoTasks(), this);
     this.addTaskListener();
     this.renderListFooter(this.footerElement);
-    
   }
 
-   showCompletedList() {
-    console.log("showCompletedTasksList-test");
+  showCompletedList() {
     this.parentElement.innerHTML = '';
     renderTaskList(this.parentElement, this.getCompletedTasks(), this);
     this.addTaskListener();
     this.renderListFooter(this.footerElement);
- }
-
-   showOneTask(taskTitle) {
-    const task1 = this.getTaskByTitle(taskTitle);
-    this.parentElement.innerHTML = "";
-    this.parentElement.appendChild(renderOneTaskFull(task1));
-    this.backButton.classList.remove('hidden');
   }
 
-addTaskListener() {
+  showOneTask(taskId) {
+    console.log(taskId);
+    const task1 = this.getTaskById(taskId);
+    // console.log(this.getAllTasks(task1.id));
+    console.log(task1);
+    this.parentElement.innerHTML = "";
+    this.parentElement.appendChild(renderOneTask(task1, this));
+    // this.backButton.classList.remove('hidden');
+  }
+
+  addTaskListener() {
     const childrenArray = Array.from(this.parentElement.children);
       childrenArray.forEach(child => {
         child.addEventListener('touchend', e => {
-        this.showOneTask(e.currentTarget.dataset.title);  //change to Edit, Delete or Add
+          let inputField = e.currentTarget.querySelector('input');
+          console.log(e.currentTarget);
+          console.log(inputField.id);
+        this.showOneTask(inputField.id);
+        
         });
       });
-     }
+  }
 
   addNewTask(){
     let newTaskField = document.getElementById("enterNewTask");
@@ -92,55 +105,58 @@ addTaskListener() {
 
     let newTask = {
       id: stringDate,  
-      title: newTaskField.value,
-      description: "Make my bed, pick-up laundry, and vaccuum the floor.", 
+      taskToDo: newTaskField.value,
       completed: false,
-      priority: "normal",
     };
 
     toDoList.push(newTask); ///create new Task
-    localStorage.setItem(newTask);
+    lsH.writeToLS(this.key, toDoList);
   }
 
   removeTask(taskId){
     let task = this.getTaskById(taskId);
-     storage.removeItem(task);
-    };
+    toDoList.splice(task, 1); 
+    lsH.writeToLS(this.key, toDoList);
+    this.showAllTasksList();//change to showTodoTaskList
+  };
 
-    removeItem(taskId) {
-      let task = toDoList.findIndex(task => task.id == taskId);     //  find the matching id
-      toDoList.splice(task, 1);                        //  remove from the big list of todos
-      lsH.writeToLS(this.key, toDoList);                          //  save main list of todos to LS
-      this.showToDoList();                                        //  show updated list on the page
-  }
   
-
   completedToggle(taskId) {
    
     // let taskId = parseInt(taskIdString, 10);
     let task = this.getTaskById(taskId);
+    task.completed = !task.completed;
     console.log(task);
-    toDoList.forEach(function(part, index) {
-      if (toDoList[index].id === taskId) {
-        console.log(index);
-        toDoList[index].completed = !toDoList[index].completed;
-        console.log(toDoList[index]);
-        console.log(taskId);
-        let elementId = document.getElementById(taskId);
-        let elementId2 = document.getElementById("completedItem")
-        elementId.classList.toggle("taskCompletedRow");
-        elementId.setAttribute("checked", "");
-        elementId2.classList.toggle("taskCompletedRow");
-        console.log(elementId);
-      }
-    });
+    console.log(toDoList);
+    lsH.writeToLS(this.key, toDoList);
+
+    let elementId = document.getElementById(taskId);
+//    let elementId2 = document.getElementById("completedItem")
+    elementId.classList.add("taskCompletedRow");
+    elementId.setAttribute("checked", "");
+//    elementId2.classList.toggle("taskCompletedRow");
+
+    // toDoList.forEach(function(part, index) {
+    //   if (toDoList[index].id === taskId) {
+    //     console.log(index);
+    //     toDoList[index].completed = !toDoList[index].completed;
+    //     console.log(toDoList[index]);
+    //     console.log(taskId);
+    //     let elementId = document.getElementById(taskId);
+    //     let elementId2 = document.getElementById("completedItem")
+    //     elementId.classList.toggle("taskCompletedRow");
+    //     elementId.setAttribute("checked", "");
+    //     elementId2.classList.toggle("taskCompletedRow");
+    //     console.log(elementId);
+    //   }
+    // });
   }
   
 
 /*
   removeTask(tasks){
     for( var i = 0; i < tasks.length; i++){ 
-      if ( tasks.title === removeTask) { 
+      if ( tasks.taskToDo === removeTask) { 
   
           tasks.splice(i, 1); 
       }
@@ -185,7 +201,7 @@ addTaskListener() {
       this.showCompletedList();
     });
 
-    // Add event listener to listCompletedTasks button.
+    // Add event listener to Enter Task button.
     let enterTasksButton = document.getElementById("enterTaskBtn");
     enterTasksButton.addEventListener('click', e => {
       this.addNewTask();  //change to Edit, Delete or Add
@@ -223,52 +239,60 @@ function convertTimestampToDate(taskId) {
     return heading
   }
   
-  function renderTaskList(parent, tasks, myThis) { 
-      console.log("test for each task list");
+  function renderTaskList(parent, tasks, taskListObject) { 
+      console.log(tasks);
         parent.appendChild(renderTaskListHeader());
         tasks.forEach(task => {
-          let newTask = renderOneTask(task);
+          let newTask = renderOneTask(task, taskListObject);
           console.log(task.id);
           parent.appendChild(newTask);
           let checkboxElement = document.getElementById(task.id);
           console.log(checkboxElement);
           checkboxElement.addEventListener('click', e => {
-            myThis.completedToggle(e.target.id);
+            taskListObject.completedToggle(e.target.id);
           });
-          let deleteButtonElement = document.getElementById(task.id+"Delete");///Id for each Button
+          let deleteButtonElement = document.getElementById(task.id);///Id for each Button
           console.log(deleteButtonElement);
           deleteButtonElement.addEventListener('click', e => {
-          myThis.removeTask(e.target.id);
+            taskListObject.removeTask(e.target.id);
+          console.log(e.target.id);
           });
         });      
   }
 
-  function renderOneTask(task) {
+  function renderOneTask(task, taskListObject) {
+    console.log(taskListObject);
+    console.log(task);
     const dateId = convertTimestampToDate(task.id);
-    const item = document.createElement("tr");
     console.log(task.id);
+    const item = document.createElement("tr");
     const inputTd = document.createElement("td");
-    const inputField = document.createElement("input")    
-    inputField.setAttribute("type", "checkbox");
-    inputField.setAttribute("id", task.id);
-    inputField.setAttribute("name", "completedCheckBox");
-    if (task.completed === true) {
-      item.setAttribute("id", "completedItem")
-      item.setAttribute("class", "taskCompletedRow");
-      inputField.setAttribute("class", 'taskCompletedBox');
-      inputField.setAttribute("checked", "");
-    }
-    inputTd.appendChild(inputField);
+    //Create Checkbox
+    const checkBoxField = document.createElement("input")    
+    checkBoxField.setAttribute("type", "checkbox");
+    checkBoxField.setAttribute("id", task.id);
+    checkBoxField.setAttribute("class", task.id);
+    checkBoxField.setAttribute("name", "completedCheckBox");
+    //Checkbox is checked if task is completed
+    // if (task.completed === true) {
+    //   item.setAttribute("id", "completedItem")
+    //   item.setAttribute("class", "taskCompletedRow");
+    //   checkBoxField.setAttribute("class", 'taskCompletedBox');
+    //   checkBoxField.setAttribute("checked", "");
+    // }
+    inputTd.appendChild(checkBoxField);
+    //create Task for Html
     const td2 = document.createElement("td");
-    td2.innerHTML = task.title;
+    td2.innerHTML = task.taskToDo;
     const td3 = document.createElement("td");
     td3.innerHTML = dateId;
+    //Add Delete Button
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = "X"
-    deleteButton.setAttribute ("id", task.id+"Delete");
+    deleteButton.setAttribute ("id", task.id);
     deleteButton.setAttribute("class", "deleteButton");
     console.log(deleteButton);  
-    console.log(inputField);
+    console.log(checkBoxField);
     item.appendChild(inputTd);
     console.log(inputTd);
     // item.appendChild(inputField);
@@ -276,39 +300,33 @@ function convertTimestampToDate(taskId) {
     item.appendChild(td3);
     item.appendChild(deleteButton);
     console.log(item);
+
+    // Add event listener to Complete button.
+    checkBoxField.addEventListener('touchstart', e => {  
+      console.log(e.target.id); 
+      taskListObject.completedToggle(e.target.id);
+      });
+
+    
+    // Add event listener to Delete button.
+    deleteButton.addEventListener('touchstart', e => { 
+      console.log(e.target.id); 
+      taskListObject.removeTask(e.target.id);
+    });
+
+
     return item;
   }
 
 
-
-  // function renderOneTaskFull(task) {
-  //   const item = document.createElement("li");
-  //   item.innerHTML = ` <div class = "taskHeader"><h2>${task.title}</h2></div>
-  //   <div class = "taskData">
-  //           <div>
-  //               <h3>To Do Task</h3>
-  //               <p>${task.title}</p>
-  //           </div>
-  //           <div>
-  //               <h3>Description</h3>
-  //               <p>${task.description}</p>
-  //           </div>
-  //           <div>
-  //             <h3>Completed</h3>
-  //             <p>${task.completed}</p>
-  //           </div>
-  //   </div>`;
-  //   return item;
-  // }
-
   // Creating a timestamp
 let timestamp = Date.now();
-console.log(timestamp);
+
 
 let timeString = timestamp.toString();
-console.log(timeString);
+
     
 // Converting it back to human-readable date and time
 let taskTimestamp = new Date(timestamp).toString();
-console.log(taskTimestamp);
+
 

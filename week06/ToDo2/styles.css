@@ -190,7 +190,7 @@ td {
     margin: .5em 2em .5em 0;
 }
 
-.radioLabel {
+/* .radioLabel {
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
@@ -234,7 +234,7 @@ td {
     background-color: blue;
     border: 2px solid darkblue;
     border-radius: 50%;
-  }
+  } */
 
   .buttonDiv {
     display:flex;
