@@ -1,7 +1,9 @@
 export function readFromLS(key) {
     let ls = localStorage.getItem(key); 
     ls = JSON.parse(ls);
-    return ls;          
+
+    return ls === null ? [] : ls;
+//    return ls;          
 }
 
 export function writeToLS(key, data) {
