@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>Art Work of Europe Search</title>
+    <meta charset="utf-8">
+    <meta name="description" content="This webpage is an app to access the Europeana database of Artwork">
+    <meta name="author" content="Alesha Anderson McCown">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body>
+<div class="content">
+    
+    <header>
+        <div class = "headerBar">
+            <span class = "euLogo">Data provided by <a rel="noopener" target="_blank" href="https://www.europeana.eu/en">
+                <img src="images/europeana-logo.svg" alt = "Europeana Logo"></a>
+            </span>
+           
+            <div class = "euImg">
+                    <img src="images/Renoir-Banner2.png" alt = "Renoir Painting"></a>
+            </div>
+        </div>
+       <div class = "titleBar">  
+            <h1 class = "mainHeader">Art Work of Europe</h1>
+            
+        </div>  
+    </header>
+
+    <main>
+        <form>
+            <p>
+                <label><b>Keywords</b>
+                <input type="text" name="keyword" id="searchKeyword" class="formElement">
+                </label> 
+            </p>
+            <br>
+            <h3 class = "searchHeader">Refine your Search</h3>
+            <p>
+                <label>AND
+                <input type="text" name="nameAnd" id="searchAnd" class="formElement" placeholder = "Mona AND Lisa">
+                </label> 
+            </p>
+            
+            <p>
+                <label>OR
+                <input type="text" name="nameOr" id="searchOr" class="formElement" placeholder = "London OR Paris">
+                </label> 
+            </p>
+
+            <p>
+                <label>NOT
+                <input type="text" name="nameNot" id="searchNot" class="formElement" 
+                pattern="[0-9]{4,}" placeholder = "Mona NOT Lisa">
+                </label> 
+            </p>
+            <br>
+
+            
+           <input type="button" value="Search Records" id="searchButton" class = "formElement">
+           <br>
+           <input type="reset" value="Clear Fields" id="resetButton" class = "formElement">
+           <br>
+           <hr class = "resultsLine">
+            
+        </form>
+        <div id="previousSearchHeader" class = "seePreviousSearches"></div>
+            <ul id="previousSearchItems"></ul>
+        
+        <hr class = "resultsLine">
+        
+
+        <ul class = "searchResults" id = "searchResultsList"></ul>
+
+        <div class="buttons" id = "buttons">
+            <button id="previous" class = "navButton">Previous</button>
+            <!-- <div id="pages"> -->
+            <button id="next" class = "navButton">Next</button>
+            
+            </div>
+           
+          </div>
+                
+        
+    
+    </main>
+
+    <footer>
+      &copy; Alesha Anderson McCown 2021
+    </footer>
+   
+</div> 
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

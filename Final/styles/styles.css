@@ -166,18 +166,18 @@ input:focus {
     box-shadow: 0 0 5px #9dc0db;
   }
 
-#searchButton {
-    font-size: 2rem;
+#searchButton, #resetButton {
+    font-size: 1.5rem;
     width: 100%;
     margin: 10px auto;
-    padding: 10px;
+    padding: 5px;
     background-color: #546A7B;
     text-align: center;
     color: #FDFDFF;
     border-radius: 0.3em;
 }
 
-#searchButton:hover {
+#searchButton:hover, #resetButton:hover {
     background-color: #393D3F;
     color: #FDFDFF;
 }
