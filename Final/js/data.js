@@ -19,6 +19,7 @@ export default class Results {
         this.searchButtonEvent = this.addSearchButtonEventListener();  //  save the reference to the search button
         //this.searchResults = {};                                       //  initialize the searchResults to be an empty object
         this.searchUrl = "";
+       
     } 
 
 
@@ -163,11 +164,12 @@ export default class Results {
                 //let displayInput = this.formatSearchResults(userInput);
                 display.renderSearchResultsList(r, userInput);   //  display the search results
             }
+            console.log("showPreviousSearches");
+            this.showPreviousSearches();
 
             const nextButton = document.querySelector("#next");
             if (nextButton.onclick == null) {
                 document.getElementById('previousSearchItems').innerHTML ="";
-                this.showPreviousSearches();
             
                 pagination.initNextPreviousButtons(this, r.totalResults);
                 pagination.buildNextButton();

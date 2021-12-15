@@ -57,6 +57,7 @@ export function renderPreviousSearches(storageSearches) {
   const previousSearchElement = document.getElementById('previousSearchItems');
   const previousSearchHeaderElement = document.getElementById('previousSearchHeader');
   previousSearchHeaderElement.innerHTML = `<h3 class ="previousSearchesHeader">Previous Searches</h3>`;
+  previousSearchElement.innerHTML = '';
   storageSearches.forEach(storageItem => {
     let listItem = document.createElement('li');
     listItem.classList.add('previousSearchItem');
