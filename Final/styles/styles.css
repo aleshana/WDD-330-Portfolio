@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lato:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&display=swap');
+
+/* 
+font-family: 'Bree Serif', serif;--header font
+font-family: 'Lato', sans-serif;--text font
+font-family: 'Patrick Hand', cursive;
+
+#393D3F--Onyx--Main Font Color
+#FDFDFF--White
+#C6C5B9--Silver--Image Border, accent 2
+#62929E--Steel Teal--Header 1 Font Color, accent 1
+#546A7B--Dark Electiric Blue--colored background with white text
+
+OR
+
+#0D1B2A--Rick Black FOGRA 29--Main Font Color
+#1B263B--Oxford Blue--Header 1 Font Color
+#415A77--Bedazzled Blue--colored background with white text
+#778DA9--Shadow Blue--accents 1
+#E0E1DD--Platinum--image border, accents 2
+
+*/
+
+body {
+    color: #393D3F;
+    background-color: #546A7B;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Bree Serif', serif;
+    font-size: 3rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    color:#62929E;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem;
+}
+
+h3 {
+    color: #393D3F;
+    background-color: #FDFDFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+.coloredBackground {
+    color: #FDFDFF;
+    background-color: #546A7B;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #393D3F;
+    color: #FDFDFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: auto;
+    padding: 15px;
+    max-width: 960px;
+}
+
+main {
+    margin: auto;
+    padding: 15px;
+    max-width: 960px;
+    background-color: #FDFDFF;
+}
+
+.headerBar {
+    display: block;
+    font-size: 1rem;
+    margin: auto;
+    padding: 5px;
+    background-color: #C6C5B9;
+    justify-content: center;
+}
+
+.euLogo img {
+    height: 25px;
+    /* height: auto; */
+
+}
+
+.euImg img{
+    display: block;
+    width: 95%;
+    margin: auto;
+    padding: 5px;
+    background-color: #C6C5B9;
+    justify-content: center;
+    border: 10px solid #62929E;
+    border-radius: 5px;
+    margin: 10px auto;
+    animation: fadeIn 5s;
+}
+
+
+.mainHeader {
+    display: block;
+    font-size: 3.5rem;
+    margin: auto;
+    padding: 0 5px 10px 5px;
+    background-color: #C6C5B9;
+    justify-content: center;
+    text-align: center;
+    color: #62929E;
+    }
+  
+
+.titleBar {
+    display: block;
+    margin: auto;
+    animation: fadeIn ease 10s;
+        
+      }
+      @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+      }
+
+p label {
+    padding: 20px 0;
+
+}
+
+p input{    
+    display: block;
+    border-radius: 4px;
+    padding: 2rem .75rem;
+    color: #485051;
+    width: 92%;   
+    border:solid 2px #62929E;
+    font-size: 1rem;
+    margin: left;
+    padding: 15px;  
+}
+
+input:focus {
+    background-color: lightyellow;
+    border: 3px solid #393D3F;
+    box-shadow: 0 0 5px #9dc0db;
+  }
+
+#searchButton {
+    font-size: 2rem;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #546A7B;
+    text-align: center;
+    color: #FDFDFF;
+    border-radius: 0.3em;
+}
+
+#searchButton:hover {
+    background-color: #393D3F;
+    color: #FDFDFF;
+}
+
+.resultsLine{
+    height: 10px;
+    color: #62929E;
+    border: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #62929E, rgba(0, 0, 0, 0));
+}
+
+footer {
+    font-size: 1rem;
+    background-color: #C6C5B9;
+    text-align: center;
+    margin: auto;
+    padding: 15px;
+    max-width: 960px;
+    font-weight: bold;
+}
+
+.detailLine{
+    height: 5px;
+    color: #62929E;
+    background-image: linear-gradient(to right, #546A7B, #C6C5B9, #546A7B);
+}
+
+.noResultsMessage {
+    color: darkred;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.thumbnailImg {
+    width: 110px;
+    border: solid 2px #C6C5B9;
+    background-color: #FDFDFF;
+    margin: auto;
+    padding: 10px;
+   
+}
+
+.list-display img {
+    transition: width 2s;
+}
+
+.list-display img:hover{
+    width: 50%;
+    height: auto;
+}
+
+.hoverMessage {
+    font-size: 1rem;
+    color: #393D3F;
+    font-style: italic;
+}
+
+.previousSearchItem {
+    display: block;
+    font-size: 1rem;
+    margin: 2px 5px;
+    padding: 2px 5px;
+    background-color: #C6C5B9;
+}
+
+button {
+    display: inline;
+    background-color: #546A7B;
+    border: 2px solid #393D3F;
+    border-radius: 0.3em;
+    width: 125px;
+    margin: 0.75em;
+    padding: 0.5em;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  button:hover {
+    /* width: 150px;
+    padding: 0.75em 2em; */
+    background-color: #393D3F;
+    color: #FDFDFF;
+  }
+  
+  /* button:hover:disabled {
+    padding: 0.5em;
+    background-color: lightgray;
+    color:gray;
+  } */
+  
+    button:disabled {
+        background-color: lightgray;
+        color:gray;
+    }
+  
+    
